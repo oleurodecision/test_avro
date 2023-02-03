@@ -16,7 +16,7 @@ class TestAvro(ConanFile):
     def configure(self):
         if self.settings.compiler == "Visual Studio":
             self.options["boost"].magic_autolink = False
-            self.options["boost"].without_url = True
+            #self.options["boost"].without_url = True
 
     def build(self):
         cmake = CMake(self)
