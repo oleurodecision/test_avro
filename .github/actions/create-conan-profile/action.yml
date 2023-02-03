@@ -1,0 +1,14 @@
+name: create-conan-profile
+description: 'Create conan profile'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Create default profile
+      run: conan profile new default --detect
+      shell: bash
+
+    - name: Update profile
+      if: runner.os == 'Linux'
+      run: conan profile update settings.compiler.libcxx=libstdc++11 default
+      shell: bash

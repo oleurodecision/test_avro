@@ -1,0 +1,19 @@
+name: main-workflow
+run-name: ${{ github.actor }} is working late, too late...
+
+on: push
+jobs:
+  process-with-conan:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+        build_type: [Release]
+    runs-on: ${{matrix.os}}
+    steps:
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/get-conan
+      - uses: ./.github/actions/create-conan-profile
+      - uses: ./.github/actions/build-project
+        with:
+          build_type: ${{matrix.build_type}}
+

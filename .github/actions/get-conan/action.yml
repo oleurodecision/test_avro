@@ -1,0 +1,13 @@
+name: get-conan
+description: 'Get conan'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Install Conan
+      id: conan
+      uses: turtlebrowser/get-conan@main
+
+    - name: Conan version
+      run: echo "${{ steps.conan.outputs.version }}"
+      shell: bash
